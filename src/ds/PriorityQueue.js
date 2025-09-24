@@ -1,10 +1,8 @@
-// A Min-Heap implementation for the Priority Queue
 export class PriorityQueue {
     constructor() {
       this.heap = [];
     }
   
-    // Helper methods
     getParentIndex(i) { return Math.floor((i - 1) / 2); }
     getLeftChildIndex(i) { return 2 * i + 1; }
     getRightChildIndex(i) { return 2 * i + 2; }
@@ -13,7 +11,6 @@ export class PriorityQueue {
       [this.heap[i], this.heap[j]] = [this.heap[j], this.heap[i]];
     }
   
-    // Compares based on priority. Lower number = higher priority.
     compare(a, b) {
       return a.priority < b.priority;
     }

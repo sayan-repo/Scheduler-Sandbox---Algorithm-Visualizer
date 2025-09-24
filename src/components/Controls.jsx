@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-// The props now correctly match what App.jsx is sending
 const Controls = ({ state, runSimulation, pauseSimulation, resumeSimulation, setSpeed, resetSimulation }) => {
-  // Destructure properties from the state object
   const { isSimulating, isPaused, originalJobs, timeQuantum } = state;
   
   const [algorithm, setAlgorithm] = useState('FCFS');
@@ -19,7 +17,8 @@ const Controls = ({ state, runSimulation, pauseSimulation, resumeSimulation, set
         <label>Algorithm</label>
         <select value={algorithm} onChange={(e) => setAlgorithm(e.target.value)} disabled={isSimulating}>
           <option value="FCFS">First-Come, First-Served</option>
-          <option value="SRTF">Shortest Remaining Time First (Preemptive)</option>
+          <option value="SRTF">Shortest Remaining Time First (SRTF)</option>
+          <option value="LRTF">Longest Remaining Time First (LRTF)</option>
           <option value="PRIORITY">Priority (Preemptive)</option>
           <option value="RR">Round Robin</option>
         </select>

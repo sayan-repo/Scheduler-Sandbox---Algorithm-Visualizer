@@ -3,6 +3,7 @@ import Select from 'react-select';
 import toast from 'react-hot-toast';
 
 const JobForm = ({ addJob, existingJobs }) => {
+  const [arrival, setArrival] = useState(0);
   const [burst, setBurst] = useState(10);
   const [priority, setPriority] = useState(1);
   const [dependencies, setDependencies] = useState([]);
@@ -13,27 +14,50 @@ const JobForm = ({ addJob, existingJobs }) => {
       toast.error('Burst time must be positive.');
       return;
     }
+    if (arrival < 0) {
+      toast.error('Arrival time cannot be negative.');
+      return;
+    }
     addJob({ 
-        burst: parseInt(burst), 
-        priority: parseInt(priority),
+        arrival: parseInt(arrival, 10),
+        burst: parseInt(burst, 10), 
+        priority: parseInt(priority, 10),
         dependencies: dependencies.map(dep => dep.value)
     });
     toast.success('Job added!');
-    setDependencies([]); // Clear selection after adding
+    setDependencies([]); 
   };
 
   const jobOptions = existingJobs.map(job => ({ value: job.id, label: job.name }));
 
   return (
     <form onSubmit={handleSubmit} className="job-form">
-      <h3>Add a New Job</h3>
+      <div className="form-group">
+        <label>Arrival Time (ms)</label>
+        <input 
+          type="number" 
+          value={arrival} 
+          onChange={(e) => setArrival(e.target.value)} 
+          min="0" 
+        />
+      </div>
       <div className="form-group">
         <label>Burst Time (ms)</label>
-        <input type="number" value={burst} onChange={(e) => setBurst(e.target.value)} min="1" />
+        <input 
+          type="number" 
+          value={burst} 
+          onChange={(e) => setBurst(e.target.value)} 
+          min="1" 
+        />
       </div>
       <div className="form-group">
         <label>Priority (lower is higher)</label>
-        <input type="number" value={priority} onChange={(e) => setPriority(e.target.value)} min="1" />
+        <input 
+          type="number" 
+          value={priority} 
+          onChange={(e) => setPriority(e.target.value)} 
+          min="1" 
+        />
       </div>
       <div className="form-group">
         <label>Dependencies</label>

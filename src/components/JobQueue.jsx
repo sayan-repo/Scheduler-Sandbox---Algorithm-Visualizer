@@ -1,6 +1,5 @@
-// src/components/JobQueue.jsx
 import React from 'react';
-import './../App.css'; // We'll add some CSS for this
+import './../App.css'; 
 
 const JobQueue = ({ queue, algorithm }) => {
   return (

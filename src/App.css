@@ -141,7 +141,7 @@ button:disabled {
 }
 
 .gantt-chart {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
 .timeline-container {
@@ -155,30 +155,30 @@ button:disabled {
 }
 
 .gantt-bar {
-    position: absolute;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #000;
-    font-weight: bold;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
 .gantt-bar span {
-    padding: 0 5px;
+  padding: 0 5px;
 }
 
 .time-axis {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.5rem 0;
-    font-size: 0.8rem;
-    color: var(--secondary-text);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  color: var(--secondary-text);
 }
 
 .job-queue-container {
@@ -242,4 +242,66 @@ button:disabled {
   color: var(--primary-text);
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
+}
+
+.results-table-container {
+  margin-top: 0;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.results-table th, .results-table td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem;
+}
+
+.results-table th {
+  background-color: #333;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: flex-start;
+}
+
+.color-key-container {
+  background-color: var(--panel-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.color-key-container h4 {
+  margin-top: 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.color-key-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.color-key-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.color-key-box {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }

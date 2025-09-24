@@ -5,13 +5,17 @@ import JobForm from './components/JobForm';
 import Controls from './components/Controls';
 import GanttChart from './components/GanttChart';
 import MetricsDisplay from './components/MetricsDisplay';
-import JobQueue from './components/JobQueue'; // Assuming you added this
+import JobQueue from './components/JobQueue';
+import ResultsTable from './components/ResultsTable';
+import ColorKey from './components/ColorKey';
 import './App.css';
+
 const PRESET_COLORS = ['#88d8b0', '#ffcc5c', '#ff6f69', '#96ceb4', '#ffeead', '#d96459', '#85a29e', '#f2a25c', '#6495ed'];
 
 function App() {
   const { state, addJob, resetSimulation, runSimulation, pauseSimulation, resumeSimulation, setSpeed } = useJobScheduler();
   const { originalJobs, timeline, metrics, readyQueue, algorithm } = state;
+
   const jobColorMap = useMemo(() => {
     const map = {};
     originalJobs.forEach((job, index) => {
@@ -19,7 +23,6 @@ function App() {
     });
     return map;
   }, [originalJobs]);
-
 
   return (
     <div className="app-container">
@@ -36,22 +39,23 @@ function App() {
           </div>
           <JobForm addJob={addJob} existingJobs={originalJobs} />
           <Controls 
-            // Pass the entire state object
             state={state} 
-            // Pass all the control functions
             runSimulation={runSimulation} 
             pauseSimulation={pauseSimulation}
             resumeSimulation={resumeSimulation}
             resetSimulation={resetSimulation}
             setSpeed={setSpeed}
           />
-          {/* We add the JobQueue visualization here */}
           <JobQueue queue={readyQueue} algorithm={algorithm} />
         </div>
         <div className="results-panel">
           <h2>Simulation Results</h2>
           <MetricsDisplay metrics={metrics} />
           <GanttChart timeline={timeline} jobColorMap={jobColorMap} />
+          <div className="details-grid">
+            <ResultsTable jobs={state.jobs} />
+            <ColorKey jobs={originalJobs} jobColorMap={jobColorMap} />
+          </div>
         </div>
       </main>
     </div>

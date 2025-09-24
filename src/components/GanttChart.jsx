@@ -1,6 +1,5 @@
 import React from 'react';
 
-// Receive jobColorMap as a prop
 const GanttChart = ({ timeline, jobColorMap }) => {
   if (timeline.length === 0) {
     return <div className="gantt-placeholder">Gantt Chart will appear here.</div>;
@@ -12,16 +11,15 @@ const GanttChart = ({ timeline, jobColorMap }) => {
     <div className="gantt-chart">
         <h4>Execution Timeline</h4>
         <div className="timeline-container">
-            {timeline.map((item) => { // No longer need index for color
+            {timeline.map((item) => { 
                 const widthPercentage = ((item.end - item.start) / totalDuration) * 100;
                 const leftPercentage = (item.start / totalDuration) * 100;
                 
-                // Use the map to get the color for the specific jobId
-                const color = jobColorMap[item.jobId] || '#cccccc'; // Fallback to gray
+                const color = jobColorMap[item.jobId] || '#cccccc'; 
 
                 return (
                     <div
-                        key={`${item.jobId}-${item.start}`} // A more robust key for preemptive cases
+                        key={`${item.jobId}-${item.start}`}
                         className="gantt-bar"
                         style={{
                             width: `${widthPercentage}%`,
